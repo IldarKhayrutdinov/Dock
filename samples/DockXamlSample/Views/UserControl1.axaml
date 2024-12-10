@@ -1,0 +1,44 @@
+<UserControl
+    x:Class="DockXamlSample.Views.UserControl1"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:DockXamlSample.ViewModels"
+    d:DesignHeight="200"
+    d:DesignWidth="200"
+    x:CompileBindings="True"
+    x:DataType="vm:UserControl1ViewModel"
+    mc:Ignorable="d">
+
+    <Design.DataContext>
+        <vm:UserControl1ViewModel />
+    </Design.DataContext>
+
+    <!--  "Unable to cast object of type 'DockXamlSample.ViewModels.UserControlItemViewModel' to type 'Dock.Model.Core.IDockable'."  -->
+    <ItemsControl ItemsSource="{Binding TableData}">
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Foreground="Red" Text="{Binding DisplayText}" />
+                    <TextBlock Foreground="Gray" Text="{Binding Value}" />
+                </StackPanel>
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
+    <!--    -->
+
+    <!--  ListBox - no exception  -->
+    <!--
+    <ListBox ItemsSource="{Binding TableData}">
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Foreground="Red" Text="{Binding DisplayText}" />
+                    <TextBlock Foreground="Gray" Text="{Binding Value}" />
+                </StackPanel>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+    </ListBox>
+    -->
+</UserControl>

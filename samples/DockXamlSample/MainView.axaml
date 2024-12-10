@@ -4,7 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="DockXamlSample.MainView"
-             x:CompileBindings="True" x:DataType="DockControl">
+             x:CompileBindings="True"
+             x:DataType="vm:MainWindowViewModel"
+             xmlns:views="clr-namespace:DockXamlSample.Views"
+             xmlns:vm="using:DockXamlSample.ViewModels" >
+
+  <Design.DataContext>
+    <vm:MainWindowViewModel />
+  </Design.DataContext>
+
   <Grid RowDefinitions="Auto,*">
 
     <Menu Grid.Row="0">
@@ -43,8 +51,8 @@
           <!-- Left Pane -->
 
           <ToolDock x:Name="LeftPane" Id="LeftPane" Proportion="0.25" Alignment="Left">
-            <Tool x:Name="SolutionExplorer" Id="SolutionExplorer" Title="Solution Explorer" x:DataType="Tool">
-              <TextBlock Text="{Binding Title}"/>
+            <Tool x:Name="SolutionExplorer" Id="SolutionExplorer" Title="Solution Explorer">
+              <!-- <TextBlock Text="{Binding Title}"/> -->
             </Tool>
           </ToolDock>
 
@@ -71,8 +79,8 @@
                     </StackPanel>
                   </DocumentTemplate>
                 </DocumentDock.DocumentTemplate>
-                <Document x:Name="Document1" Id="Document1" Title="Program.cs" x:DataType="Document">
-                  <TextBlock Text="{Binding Title}"/>
+                <Document x:Name="Document1" Id="Document1" Title="Program.cs"  >
+                  <views:UserControl1 DataContext="{Binding $parent[UserControl].((vm:MainWindowViewModel)DataContext).UserControl1Data}" />
                 </Document>
                 <Document x:Name="Document2" Id="Document2" Title="App.axaml" x:DataType="Document">
                   <TextBlock Text="{Binding Title}"/>

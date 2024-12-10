@@ -15,6 +15,7 @@ using Dock.Model.Avalonia.Controls;
 using Dock.Model.Avalonia.Json;
 using Dock.Model.Core;
 using Dock.Serializer;
+using DockXamlSample.ViewModels;
 
 namespace DockXamlSample;
 
@@ -25,6 +26,8 @@ public partial class MainView : UserControl
 
     public MainView()
     {
+        this.DataContext = new MainWindowViewModel();
+
         InitializeComponent();
 
         _serializer = new DockSerializer(typeof(AvaloniaList<>));
